@@ -12,8 +12,8 @@ auto init = [](benchmark::State& state) {
   Eigen::VectorXd y_val = exp(Eigen::VectorXd::Random(state.range(0)));
   Eigen::VectorXd nu_val = exp(Eigen::VectorXd::Random(state.range(0)));
 
-  return std::make_tuple(promote_scalar<var>(y_val),
-			 promote_scalar<var>(nu_val));
+  return std::make_tuple(CAST_VAR(y_val),
+			 CAST_VAR(nu_val));
 };
 
 auto init_data = [](benchmark::State& state) {
@@ -25,7 +25,7 @@ auto init_data = [](benchmark::State& state) {
   Eigen::VectorXd nu_val = exp(Eigen::VectorXd::Random(state.range(0)));
 
   return std::make_tuple(y_val,
-			 promote_scalar<var>(nu_val));
+			 CAST_VAR(nu_val));
 };
 
 static void inv_chi_square_lpdf(benchmark::State& state) {

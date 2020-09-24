@@ -13,9 +13,9 @@ static void trace_gen_quad_form(benchmark::State& state) {
     Eigen::MatrixXd y_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));
     Eigen::MatrixXd z_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));
 
-    return std::make_tuple(promote_scalar<var>(x_val),
-			   promote_scalar<var>(y_val),
-			   promote_scalar<var>(z_val));
+    return std::make_tuple(CAST_VAR(x_val),
+			   CAST_VAR(y_val),
+			   CAST_VAR(z_val));
   };
 
   auto run = [](const auto&... args) {

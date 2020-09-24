@@ -12,8 +12,8 @@ auto init = [](benchmark::State& state) {
   Eigen::VectorXd y_val = exp(Eigen::VectorXd::Random(state.range(0)));
   Eigen::VectorXd beta_val = exp(Eigen::VectorXd::Random(state.range(0)));
 
-  return std::make_tuple(promote_scalar<var>(y_val),
-			 promote_scalar<var>(beta_val));
+  return std::make_tuple(CAST_VAR(y_val),
+			 CAST_VAR(beta_val));
 };
 
 auto init_data = [](benchmark::State& state) {
@@ -25,7 +25,7 @@ auto init_data = [](benchmark::State& state) {
   Eigen::VectorXd beta_val = exp(Eigen::VectorXd::Random(state.range(0)));
 
   return std::make_tuple(y_val,
-			 promote_scalar<var>(beta_val));
+			 CAST_VAR(beta_val));
 };
 
 static void exponential_lpdf(benchmark::State& state) {

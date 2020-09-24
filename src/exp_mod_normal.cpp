@@ -14,10 +14,10 @@ auto init = [](benchmark::State& state) {
   Eigen::VectorXd sigma_val = exp(Eigen::VectorXd::Random(state.range(0)));
   Eigen::VectorXd lambda_val = exp(Eigen::VectorXd::Random(state.range(0)));
 
-  return std::make_tuple(promote_scalar<var>(y_val),
-			 promote_scalar<var>(mu_val),
-			 promote_scalar<var>(sigma_val),
-			 promote_scalar<var>(lambda_val));
+  return std::make_tuple(CAST_VAR(y_val),
+			 CAST_VAR(mu_val),
+			 CAST_VAR(sigma_val),
+			 CAST_VAR(lambda_val));
 };
 
 auto init_data = [](benchmark::State& state) {
@@ -31,9 +31,9 @@ auto init_data = [](benchmark::State& state) {
   Eigen::VectorXd lambda_val = exp(Eigen::VectorXd::Random(state.range(0)));
 
   return std::make_tuple(y_val,
-			 promote_scalar<var>(mu_val),
-			 promote_scalar<var>(sigma_val),
-			 promote_scalar<var>(lambda_val));
+			 CAST_VAR(mu_val),
+			 CAST_VAR(sigma_val),
+			 CAST_VAR(lambda_val));
 };
 
 static void exp_mod_normal_lpdf(benchmark::State& state) {

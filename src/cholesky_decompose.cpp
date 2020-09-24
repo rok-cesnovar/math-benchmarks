@@ -15,7 +15,7 @@ static void cholesky_decompose(benchmark::State& state) {
     for(size_t i = 0; i < x_val.rows(); ++i)
       x_val(i, i) += 2.0 * x_val.cols();
 
-    return std::make_tuple(promote_scalar<var>(x_val));
+    return std::make_tuple(CAST_VAR(x_val));
   };
 
   auto run = [](const auto&... args) {

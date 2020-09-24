@@ -17,7 +17,7 @@ static void mdivide_left_spd_matrix_vector(benchmark::State& state) {
     for(size_t i = 0; i < x_val.rows(); ++i)
       x_val(i, i) += 2.0 * state.range(0);
 
-    return std::make_tuple(promote_scalar<var>(x_val), promote_scalar<var>(y_val));
+    return std::make_tuple(CAST_VAR(x_val), CAST_VAR(y_val));
   };
 
   auto run = [](const auto&... args) {
@@ -40,7 +40,7 @@ static void mdivide_left_spd_matrix_matrix(benchmark::State& state) {
     for(size_t i = 0; i < x_val.rows(); ++i)
       x_val(i, i) += 2.0 * state.range(0);
 
-    return std::make_tuple(promote_scalar<var>(x_val), promote_scalar<var>(y_val));
+    return std::make_tuple(CAST_VAR(x_val), CAST_VAR(y_val));
   };
 
   auto run = [](const auto&... args) {

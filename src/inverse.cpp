@@ -11,7 +11,7 @@ static void inverse(benchmark::State& state) {
   auto init = [](benchmark::State& state) {
     Eigen::MatrixXd x_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));
 
-    return std::make_tuple(promote_scalar<var>(x_val));
+    return std::make_tuple(CAST_VAR(x_val));
   };
 
   auto run = [](const auto&... args) {

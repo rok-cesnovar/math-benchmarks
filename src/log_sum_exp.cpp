@@ -11,7 +11,7 @@ static void log_sum_exp_vec(benchmark::State& state) {
   auto init = [](benchmark::State& state) {
     Eigen::VectorXd x_val = Eigen::VectorXd::Random(state.range(0));
 
-    return std::make_tuple(promote_scalar<var>(x_val));
+    return std::make_tuple(CAST_VAR(x_val));
   };
 
   auto run = [](const auto&... args) {
@@ -29,8 +29,8 @@ static void log_sum_exp_scalar(benchmark::State& state) {
     Eigen::VectorXd x_val = Eigen::VectorXd::Random(state.range(0));
     Eigen::VectorXd y_val = Eigen::VectorXd::Random(state.range(0));
 
-    return std::make_tuple(promote_scalar<var>(x_val),
-			   promote_scalar<var>(y_val));
+    return std::make_tuple(CAST_VAR(x_val),
+			   CAST_VAR(y_val));
   };
 
   auto run = [](const auto& arg1, const auto& arg2) {

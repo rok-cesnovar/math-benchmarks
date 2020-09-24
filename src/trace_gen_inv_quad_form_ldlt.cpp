@@ -14,11 +14,11 @@ static void trace_gen_inv_quad_form_ldlt(benchmark::State& state) {
     Eigen::MatrixXd z_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));
 
     stan::math::LDLT_factor<var, Eigen::Dynamic, Eigen::Dynamic>
-    x_ldlt(promote_scalar<var>(y_val));
+    x_ldlt(CAST_VAR(y_val));
     
-    return std::make_tuple(promote_scalar<var>(x_val),
+    return std::make_tuple(CAST_VAR(x_val),
 			   x_ldlt,
-			   promote_scalar<var>(z_val));
+			   CAST_VAR(z_val));
   };
 
   auto run = [](const auto&... args) {

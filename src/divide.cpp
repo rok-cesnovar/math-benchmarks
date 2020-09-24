@@ -12,7 +12,7 @@ static void divide(benchmark::State& state) {
     Eigen::VectorXd x_val = Eigen::VectorXd::Random(state.range(0));
     var y = 2.5;
 
-    return std::make_tuple(promote_scalar<var>(x_val), y);
+    return std::make_tuple(CAST_VAR(x_val), y);
   };
 
   auto run = [](const auto&... args) {

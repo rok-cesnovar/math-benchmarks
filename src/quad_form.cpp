@@ -12,7 +12,7 @@ static void quad_form_matrix_vector(benchmark::State& state) {
     Eigen::MatrixXd x_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));
     Eigen::VectorXd y_val = Eigen::VectorXd::Random(state.range(0));
 
-    return std::make_tuple(promote_scalar<var>(x_val), promote_scalar<var>(y_val));
+    return std::make_tuple(CAST_VAR(x_val), CAST_VAR(y_val));
   };
 
   auto run = [](const auto&... args) {
@@ -30,7 +30,7 @@ static void quad_form_matrix_matrix(benchmark::State& state) {
     Eigen::MatrixXd x_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));
     Eigen::MatrixXd y_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));
 
-    return std::make_tuple(promote_scalar<var>(x_val), promote_scalar<var>(y_val));
+    return std::make_tuple(CAST_VAR(x_val), CAST_VAR(y_val));
   };
 
   auto run = [](const auto&... args) {

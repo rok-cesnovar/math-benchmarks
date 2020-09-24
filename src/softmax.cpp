@@ -6,16 +6,15 @@
 
 static void softmax(benchmark::State& state) {
   using stan::math::var;
-  using stan::math::promote_scalar;
-
-  auto init = [](benchmark::State& state) {
-    Eigen::VectorXd x_val = Eigen::VectorXd::Random(state.range(0));
-
-    return std::make_tuple(promote_scalar<var>(x_val));
-  };
 
   auto run = [](const auto&... args) {
     return sum(softmax(args...));
+  };
+
+  auto init = [](benchmark::State& state) {
+    Eigen::VectorXd x_val = Eigen::VectorXd::Random(state.range(0));
+    
+    return std::make_tuple(CAST_VAR(x_val));
   };
 
   callback_bench_impl(init, run, state);

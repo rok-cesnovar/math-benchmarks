@@ -7,6 +7,9 @@ include math/make/dependencies
 include math/make/libraries
 
 CXXFLAGS += -I $(BENCHMARK)/include
+ifdef VARMAT
+CXXFLAGS += -DVARMAT
+endif
 LDFLAGS += -L $(BENCHMARK)/build/src
 LDLIBS += -lbenchmark -ltbb
 

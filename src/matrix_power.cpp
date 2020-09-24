@@ -11,7 +11,7 @@ static void matrix_power(benchmark::State& state) {
   auto init = [](benchmark::State& state) {
     Eigen::MatrixXd x_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));
 
-    return std::make_tuple(promote_scalar<var>(x_val), 3);
+    return std::make_tuple(CAST_VAR(x_val), 3);
   };
 
   auto run = [](const auto&... args) {

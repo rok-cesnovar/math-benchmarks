@@ -34,7 +34,7 @@ static void gp_periodic_cov(benchmark::State& state) {
     var length_scale = 2.1;
     var p = 1.7;
 
-    return std::make_tuple(promote_scalar<var>(x_val), sigma, length_scale, p);
+    return std::make_tuple(CAST_VAR(x_val), sigma, length_scale, p);
   };
 
   auto run = [](const auto&... args) {
@@ -54,7 +54,7 @@ static void gp_periodic_cov_vec2(benchmark::State& state) {
     var length_scale = 2.1;
     var p = 1.7;
 
-    return std::make_tuple(promote_scalar<var>(x_val), sigma, length_scale, p);
+    return std::make_tuple(CAST_VAR(x_val), sigma, length_scale, p);
   };
 
   auto run = [](const auto&... args) {

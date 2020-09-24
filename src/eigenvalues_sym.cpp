@@ -13,7 +13,7 @@ static void eigenvalues_sym(benchmark::State& state) {
 
     x_val = (x_val + x_val.transpose()).eval();
 
-    return std::make_tuple(promote_scalar<var>(x_val));
+    return std::make_tuple(CAST_VAR(x_val));
   };
 
   auto run = [](const auto&... args) {

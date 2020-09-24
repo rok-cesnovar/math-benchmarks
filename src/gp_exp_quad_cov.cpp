@@ -32,7 +32,7 @@ static void gp_exp_quad_cov(benchmark::State& state) {
     var sigma = 1.5;
     var length_scale = 2.1;
 
-    return std::make_tuple(promote_scalar<var>(x_val), sigma, length_scale);
+    return std::make_tuple(CAST_VAR(x_val), sigma, length_scale);
   };
 
   auto run = [](const auto&... args) {
@@ -51,7 +51,7 @@ static void gp_exp_quad_cov_vec2(benchmark::State& state) {
     var sigma = 1.5;
     var length_scale = 2.1;
 
-    return std::make_tuple(promote_scalar<var>(x_val), sigma, length_scale);
+    return std::make_tuple(CAST_VAR(x_val), sigma, length_scale);
   };
 
   auto run = [](const auto&... args) {

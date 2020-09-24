@@ -12,8 +12,8 @@ static void dot_product(benchmark::State& state) {
     Eigen::VectorXd x_val = Eigen::VectorXd::Random(state.range(0));
     Eigen::VectorXd y_val = Eigen::VectorXd::Random(state.range(0));
 
-    return std::make_tuple(promote_scalar<var>(x_val),
-			   promote_scalar<var>(y_val));
+    return std::make_tuple(CAST_VAR(x_val),
+			   CAST_VAR(y_val));
   };
 
   auto run = [](const auto&... args) {

@@ -5,10 +5,20 @@
 #include <stan/math.hpp>
 #include <utility>
 
+#ifndef VARMAT
+#define CAST_VAR stan::math::promote_scalar<var>
+#else
+#define CAST_VAR make_var_value
+#endif
+
+template <typename T>
+auto make_var_value(const T& x) {
+  return stan::math::var_value<T>(x);
+}
+
 template <typename F_init, typename F_run>
 static void callback_bench_impl(F_init init, F_run run, benchmark::State& state) {
   using stan::math::var;
-  using stan::math::promote_scalar_t;
 
   Eigen::MatrixXd x_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));
   Eigen::MatrixXd y_val = Eigen::MatrixXd::Random(state.range(0), state.range(0));

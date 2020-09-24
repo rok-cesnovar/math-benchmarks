@@ -13,9 +13,9 @@ auto init = [](benchmark::State& state) {
   Eigen::VectorXd mu_val = Eigen::VectorXd::Random(state.range(0));
   Eigen::VectorXd beta_val = exp(Eigen::VectorXd::Random(state.range(0)));
 
-  return std::make_tuple(promote_scalar<var>(y_val),
-			 promote_scalar<var>(mu_val),
-			 promote_scalar<var>(beta_val));
+  return std::make_tuple(CAST_VAR(y_val),
+			 CAST_VAR(mu_val),
+			 CAST_VAR(beta_val));
 };
 
 auto init_data = [](benchmark::State& state) {
@@ -28,8 +28,8 @@ auto init_data = [](benchmark::State& state) {
   Eigen::VectorXd beta_val = exp(Eigen::VectorXd::Random(state.range(0)));
 
   return std::make_tuple(y_val,
-			 promote_scalar<var>(mu_val),
-			 promote_scalar<var>(beta_val));
+			 CAST_VAR(mu_val),
+			 CAST_VAR(beta_val));
 };
 
 static void gumbel_lpdf(benchmark::State& state) {
