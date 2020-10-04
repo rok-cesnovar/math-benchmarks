@@ -1,0 +1,24 @@
+name: Benchmarks
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  run-benchmark:
+    name: Benchmarks
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: true
+    - name: Build Benchmark and Math libs
+      run: |
+        cd math/lib/benchmark_*
+        mkdir build && cd build
+        cmake .. -DCMAKE_BUILD_TYPE=RELEASE
+        make
+        cd ../../..
+        ls .
+        make -f make/standalone math-libs
